@@ -1,25 +1,28 @@
 import { GraphQLServer, PubSub } from 'graphql-yoga';
 
-import Mutation from './resolvers/Mutation';
 import Query from './resolvers/Query';
 import Subscription from './resolvers/Subscription';
+import { connectToChain } from '../services/substrateChain';
 
 /* Create the GraphQL Yoga Server */
 
 const pubsub = new PubSub();
+let api;
+(async () => {
+  api = await connectToChain();
+})();
 
 function createServer() {
   return new GraphQLServer({
     typeDefs: 'src/schema.graphql',
     resolvers: {
-      Mutation,
       Query,
       Subscription,
     },
     resolverValidationOptions: {
       requireResolversForResolveType: false,
     },
-    context: req => ({ ...req, pubsub }),
+    context: req => ({ ...req, pubsub, api }),
   });
 }
 
