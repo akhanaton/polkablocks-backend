@@ -6,8 +6,9 @@ import { connectToChain } from '../services/substrateChain';
 
 /* Create the GraphQL Yoga Server */
 
-const pubsub = new PubSub();
+const pubSub = new PubSub();
 let api;
+
 (async () => {
   api = await connectToChain();
 })();
@@ -22,8 +23,8 @@ function createServer() {
     resolverValidationOptions: {
       requireResolversForResolveType: false,
     },
-    context: req => ({ ...req, pubsub, api }),
+    context: req => ({ ...req, pubSub, api }),
   });
 }
 
-export { createServer };
+export { createServer, pubSub };
