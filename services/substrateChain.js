@@ -1,7 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const connectToChain = async () => {
-  const WS_PROVIDER = 'wss://kusama-rpc.polkadot.io/';
+  const WS_PROVIDER = 'ws://136.244.69.37:9944/';
   const provider = new WsProvider(WS_PROVIDER);
 
   const api = await ApiPromise.create({ provider });

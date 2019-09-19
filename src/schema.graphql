@@ -11,17 +11,21 @@ type Query {
 }
 
 type Subscription {
-    blockHeight: String!
-    sessionValidators: [Validator!]!
-    stakingValidators: [Validator!]!
+    blockHeight: String
+    sessionValidators: [Validator]
+    stakingValidators: [Validator]
     stakers(accountId: String!): ValidationSet
     authorship: String!
-    ledger(accountId: String!): Ledger!
+    ledger(accountId: String!): Ledger
     freeBalance(accountId: String!): String
 }
 
 type Validator {
   controllerId: String
+  freeBalance: String
+  totalBonded: String
+  activeBonded: String
+  commision: String
   accountId: String
   unstakeThreshold: Int
   validatorPayment: String 
