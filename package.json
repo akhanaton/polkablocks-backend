@@ -6,7 +6,8 @@
   "author": "akhanaton <akhanaton@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js --ext js,graphql --exec babel-node"
+    "start": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "build": "nodemon src/index.js--exec babel - node"
   },
   "dependencies": {
     "@polkadot/api": "^0.90.1",
