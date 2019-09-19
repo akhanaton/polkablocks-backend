@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon src/index.js --ext js,graphql --exec babel-node",
-    "build": "nodemon src/index.js --exec babel-node"
+    "build": "src/index.js --exec babel-node"
   },
   "dependencies": {
     "@polkadot/api": "^0.90.1",
