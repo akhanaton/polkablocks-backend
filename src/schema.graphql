@@ -1,0 +1,50 @@
+type Query {
+  currentElected: [Account!]!
+  sessionValidators: [Validator!]!
+  stakingValidators: [Validator!]!
+  validatorCount: Int!
+  stakers(accountId: String!): ValidationSet
+  nominators(accountId: String!): String
+  recievedHeartbeats(sessionIndex: String!, validatorId: String!): String
+  currentIndex: String
+  bonded(controllerId: String!): String
+}
+
+type Subscription {
+    blockHeight: String
+    sessionValidators: [Validator]
+    stakingValidators: [Validator]
+    stakers(accountId: String!): ValidationSet
+    authorship: String!
+    ledger(accountId: String!): Ledger
+    freeBalance(accountId: String!): String
+}
+
+type Validator {
+  controllerId: String
+  freeBalance: String
+  totalBonded: String
+  activeBonded: String
+  commision: String
+  accountId: String
+  unstakeThreshold: Int
+  validatorPayment: String 
+}
+
+type Ledger {
+  stash: String!
+  total: String
+  active: String
+}
+  
+type Account {
+  accountId: String!
+  bond: String!
+  freeBalance: String
+}
+
+type ValidationSet {
+  totalStake: String!
+  ownStake: String!
+  nominators: [Account!]!
+}
