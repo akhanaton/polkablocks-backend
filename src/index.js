@@ -1,8 +1,4 @@
 import { createServer } from './createServer';
-import {
-  getStakingValidators,
-  getSessionValidators,
-} from '../services/subscriptionApi';
 
 const server = createServer();
 
@@ -19,6 +15,3 @@ server.start(
   http://localhost:${deets.port}`);
   }
 );
-
-getStakingValidators();
-getSessionValidators();

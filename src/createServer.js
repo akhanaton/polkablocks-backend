@@ -1,12 +1,10 @@
-import { GraphQLServer, PubSub } from 'graphql-yoga';
+import { GraphQLServer } from 'graphql-yoga';
 
 import Query from './resolvers/Query';
-import Subscription from './resolvers/Subscription';
 import { connectToChain } from '../services/substrateChain';
 
 /* Create the GraphQL Yoga Server */
 
-const pubSub = new PubSub();
 let api;
 
 (async () => {
@@ -18,13 +16,12 @@ function createServer() {
     typeDefs: 'src/schema.graphql',
     resolvers: {
       Query,
-      Subscription,
     },
     resolverValidationOptions: {
       requireResolversForResolveType: false,
     },
-    context: req => ({ ...req, pubSub, api }),
+    context: req => ({ ...req, api }),
   });
 }
 
-export { createServer, pubSub };
+export { createServer };

@@ -1,4 +1,5 @@
 type Query {
+  authorship: String!
   currentElected: [Account!]!
   sessionValidators: [Validator!]!
   stakingValidators: [Validator!]!
@@ -8,16 +9,8 @@ type Query {
   recievedHeartbeats(sessionIndex: String!, validatorId: String!): String
   currentIndex: String
   bonded(controllerId: String!): String
-}
-
-type Subscription {
-    blockHeight: String
-    sessionValidators: [Validator]
-    stakingValidators: [Validator]
-    stakers(accountId: String!): ValidationSet
-    authorship: String!
-    ledger(accountId: String!): Ledger
-    freeBalance(accountId: String!): String
+  ledger(accountId: String!): Ledger
+  freeBalance(accountId: String!): String
 }
 
 type Validator {
