@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import { createServer } from './createServer';
 
 const server = createServer();
@@ -8,6 +9,7 @@ server.start(
       credentials: true,
       origin: '*',
     },
+    port: process.env.PORT || 4000,
   },
 
   deets => {
