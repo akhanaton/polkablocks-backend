@@ -13,7 +13,7 @@ let api;
 
 function createServer() {
   return new GraphQLServer({
-    typeDefs: 'src/schema.graphql',
+    typeDefs: `${__dirname}/schema.graphql`,
     resolvers: {
       Query,
     },
