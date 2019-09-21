@@ -1,8 +1,7 @@
-import { setAddressPrefix, encodeAddress } from '@polkadot/util-crypto';
+import { setSS58Format, encodeAddress } from '@polkadot/util-crypto';
 import { isHex } from '../../utils/numbers';
-import StakingValidators from '../../services/stakingValidators';
 
-setAddressPrefix(2);
+setSS58Format(2);
 /* eslint-disable no-plusplus */
 const Query = {
   async currentElected(parent, args, { api }, info) {
@@ -117,7 +116,6 @@ const Query = {
   async stakingValidators(parents, args, { api, client }, info) {
     const data = await client.getAsync('StakingValidators');
     const validators = JSON.parse(data);
-    console.log(data);
     return validators;
   },
 

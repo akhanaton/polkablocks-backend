@@ -1,4 +1,6 @@
-import { ApiPromise, WsProvider } from '@polkadot/api';
+const polkadot = require('@polkadot/api');
+
+const { ApiPromise, WsProvider } = polkadot;
 
 const connectToChain = async () => {
   const WS_PROVIDER = 'ws://136.244.69.37:9944/';
@@ -18,4 +20,4 @@ const connectToChain = async () => {
   return api;
 };
 
-export { connectToChain };
+module.exports = { connectToChain };

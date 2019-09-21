@@ -3,4 +3,4 @@ function isHex(h) {
   return a.toString(16) === h;
 }
 
-export { isHex };
+module.exports = { isHex };
