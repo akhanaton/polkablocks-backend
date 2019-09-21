@@ -1,7 +1,7 @@
-import { setAddressPrefix, encodeAddress } from '@polkadot/util-crypto';
+import { setSS58Format, encodeAddress } from '@polkadot/util-crypto';
 import { isHex } from '../../utils/numbers';
 
-setAddressPrefix(2);
+setSS58Format(2);
 /* eslint-disable no-plusplus */
 const Query = {
   async currentElected(parent, args, { api }, info) {
@@ -62,7 +62,7 @@ const Query = {
     const freeBalance = await api.query.balances.freeBalance(args.accountId);
     return freeBalance;
   },
-  async stakingValidators(parent, args, { api }, info) {
+  /* async stakingValidators(parent, args, { api }, info) {
     const validatorMap = await api.query.staking.validators();
     const validators = [];
     for (let index = 0; index < validatorMap[0].length; index++) {
@@ -111,7 +111,14 @@ const Query = {
       }
     }
     return validators;
+  }, */
+
+  async stakingValidators(parents, args, { api, client }, info) {
+    const data = await client.getAsync('StakingValidators');
+    const validators = JSON.parse(data);
+    return validators;
   },
+
   async validatorCount(parents, args, { api }, info) {
     const count = await api.query.staking.validatorCount();
 

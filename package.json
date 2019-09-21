@@ -6,26 +6,28 @@
   "author": "akhanaton <akhanaton@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js --ext js,graphql --exec babel-node",
-    "start": "node -r esm dist/index.js",
-    "heroku-postbuild": "babel src --out-dir dist --copy-files",
-    "build": "nodemon src/index.js --ext js,graphql --exec babel-node"
+    "start": "node dist/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql --exec babel-node",
+    "build": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "heroku-postbuild": "babel src --out-dir dist --copy-files"
   },
   "dependencies": {
-    "@babel/polyfill": "7.6.0",
-    "@polkadot/api": "^0.90.1",
-    "@polkadot/util-crypto": "^1.2.1",
+    "@babel/polyfill": "7.0.0",
+    "@polkadot/api": "^0.92.1",
+    "@polkadot/util-crypto": "^1.4.1",
     "babel-cli": "^6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "bluebird": "^3.5.5",
     "compression": "^1.7.4",
     "dotenv": "^8.1.0",
-    "esm": "^3.2.25",
+    "env-cmd": "^10.0.1",
     "graphql-yoga": "1.16.7",
-    "helmet": "^3.21.0"
+    "helmet": "^3.21.0",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-stage-3": "^6.24.1",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.2.0",
