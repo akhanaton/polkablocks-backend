@@ -36,9 +36,6 @@ function createServer() {
     typeDefs: `${__dirname}/schema.graphql`,
     resolvers: {
       Query,
-      engine: {
-        apiKey: 'service:akhanaton-5337:z4rWzxfNJAcxfPBsfnKzGw',
-      },
     },
     resolverValidationOptions: {
       requireResolversForResolveType: false,
