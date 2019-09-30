@@ -3,7 +3,7 @@ const polkadot = require('@polkadot/api');
 const { ApiPromise, WsProvider } = polkadot;
 
 const connectToChain = async () => {
-  const WS_PROVIDER = 'ws://136.244.69.37:9944/';
+  const WS_PROVIDER = 'ws://140.82.4.210:9944/';
   const provider = new WsProvider(WS_PROVIDER);
 
   const api = await ApiPromise.create({ provider });
