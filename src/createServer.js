@@ -1,7 +1,8 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer, PubSub } from 'graphql-yoga';
 import redis from 'redis';
 import bluebird from 'bluebird';
 import Query from './resolvers/Query';
+import Subscription from './resolvers/Subscription';
 import { connectToChain } from '../services/substrateChain';
 
 /* Create the GraphQL Yoga Server */
@@ -9,7 +10,9 @@ import { connectToChain } from '../services/substrateChain';
 
 let api;
 let client;
+
 bluebird.promisifyAll(redis.RedisClient.prototype);
+const pubSub = new PubSub();
 
 (async () => {
   api = await connectToChain();
@@ -36,12 +39,13 @@ function createServer() {
     typeDefs: `${__dirname}/schema.graphql`,
     resolvers: {
       Query,
+      Subscription,
     },
     resolverValidationOptions: {
       requireResolversForResolveType: false,
     },
-    context: req => ({ ...req, api, client }),
+    context: req => ({ ...req, api, client, pubSub }),
   });
 }
 
-export { createServer };
+export { createServer, pubSub };
