@@ -1,5 +1,5 @@
-import { getSessionInfo, getHeartbeats } from '../../services/polkadot';
-import { getFinalized } from '../../services/polkascan';
+import { getSessionInfo, getHeartbeats } from '../services/polkadot';
+import { getFinalized } from '../services/polkascan';
 
 const Subscription = {
   finalizedHead: {

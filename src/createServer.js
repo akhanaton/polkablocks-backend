@@ -3,7 +3,7 @@ import redis from 'redis';
 import bluebird from 'bluebird';
 import Query from './resolvers/Query';
 import Subscription from './resolvers/Subscription';
-import { connectToChain } from '../services/substrateChain';
+import { connectToChain } from './services/substrateChain';
 
 /* Create the GraphQL Yoga Server */
 /* eslint-disable global-require */
