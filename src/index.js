@@ -1,5 +1,6 @@
 import '@babel/polyfill';
 import { createServer } from './createServer';
+import { getHeartbeats } from './services/polkascan';
 
 const server = createServer();
 
@@ -17,3 +18,5 @@ server.start(
   http://localhost:${deets.port}`);
   }
 );
+
+getHeartbeats();
