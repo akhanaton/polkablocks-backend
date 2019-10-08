@@ -1,5 +1,4 @@
 import { getSessionInfo, getHead } from '../services/polkadot';
-import { getHeartbeats } from '../services/polkascan';
 
 const Subscription = {
   bestHead: {
@@ -16,7 +15,6 @@ const Subscription = {
   },
   heartbeats: {
     async subscribe(parent, args, { api, pubSub }, info) {
-      getHeartbeats();
       return pubSub.asyncIterator('heartsChannel');
     },
   },

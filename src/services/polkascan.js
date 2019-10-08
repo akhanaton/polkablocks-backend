@@ -55,4 +55,4 @@ const getHeartbeats = async () => {
   }, 60000);
 };
 
-module.exports = { getFinalized, getHeartbeats };
+export { getFinalized, getHeartbeats };
