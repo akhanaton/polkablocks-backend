@@ -52,7 +52,7 @@ const getHeartbeats = async () => {
     pubSub.publish('heartsChannel', {
       heartbeats: newHeartbeats,
     });
-  }, 60000);
+  }, 25000);
 };
 
 export { getFinalized, getHeartbeats };
