@@ -14,9 +14,9 @@ type Query {
 }
 
 type Subscription {
-  finalizedHead: String!
+  bestHead: String!
   sessionInfo: SessionInfo
-  heartbeats: String
+  heartbeats: [String]
 }
 
 type Validator {
