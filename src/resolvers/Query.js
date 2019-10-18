@@ -1,5 +1,4 @@
 import { setSS58Format, encodeAddress } from '@polkadot/util-crypto';
-import { isHex } from '../../utils/numbers';
 
 setSS58Format(2);
 /* eslint-disable no-plusplus */
