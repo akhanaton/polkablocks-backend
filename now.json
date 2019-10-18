@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "env": {
+    "KUSAMA_NODE_URL": "ws://tartan.ddns.net:9944/"
+  },
   "builds": [{
     "src": "src/index.js",
     "use": "@now/node-server"
