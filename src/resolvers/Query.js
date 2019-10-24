@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { setSS58Format, encodeAddress } from '@polkadot/util-crypto';
 
 setSS58Format(2);
@@ -116,6 +117,42 @@ const Query = {
     const data = await client.getAsync('StakingValidators');
     const validators = JSON.parse(data);
     return validators;
+  },
+
+  async phragmenValidators(parents, args, { api, client }, info) {
+    const data = await client.getAsync('PhragmenValidators');
+    const validators = JSON.parse(data);
+    const {
+      validator_count,
+      nominator_count,
+      total_issuance,
+      candidates,
+      final_slot_stake,
+    } = validators;
+
+    const valCandidates = candidates.map(candidate => {
+      const nominators = candidate.voters.map(voter => ({
+        accountId: encodeAddress(voter.pub_key_nominator),
+        stake: voter.stake_nominator,
+      }));
+      return {
+        rank: candidate.rank,
+        accountId: encodeAddress(candidate.pub_key_stash),
+        totalStake: candidate.stake_total,
+        validatorStake: candidate.stake_validator,
+        nominatorStake: candidate.other_stake_sum,
+        nominatorCount: candidate.other_stake_count,
+        controllerId: encodeAddress(candidate.pub_key_controller),
+        nominators,
+      };
+    });
+    return {
+      validatorCount: validator_count,
+      nominatorCount: nominator_count,
+      totalIssuance: total_issuance,
+      lowestStake: final_slot_stake,
+      valCandidates,
+    };
   },
 
   async validatorCount(parents, args, { api }, info) {

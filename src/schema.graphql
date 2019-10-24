@@ -3,6 +3,7 @@ type Query {
   currentElected: [Account!]!
   sessionValidators: [Validator!]!
   stakingValidators: [Validator!]!
+  phragmenValidators: PhragmenValidators!
   validatorCount: Int!
   stakers(accountId: String!): ValidationSet
   nominators(accountId: String!): String
@@ -30,6 +31,22 @@ type Validator {
   validatorPayment: String 
 }
 
+type Nominators {
+  accountId: String!
+  stake: String!
+}
+
+type Candidate {
+  rank: Int!
+  accountId: String!
+  totalStake: String!
+  validatorStake: String!
+  nominatorStake: String!
+  nominatorCount: Int!
+  controllerId: String!
+  nominators: [Nominators]
+}
+
 type SessionInfo {
   currentIndex: Int
   eraLength: Int
@@ -49,6 +66,14 @@ type Account {
   accountId: String!
   bond: String!
   freeBalance: String
+}
+
+type PhragmenValidators {
+  validatorCount: Int!
+  nominatorCount: Int!
+  totalIssuance: String!
+  valCandidates: [Candidate!]!
+  lowestStake: String!
 }
 
 type ValidationSet {
