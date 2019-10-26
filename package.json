@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.0.0",
-    "@polkadot/api": "^0.93.1",
-    "@polkadot/util": "^1.5.1",
-    "@polkadot/util-crypto": "^1.5.1",
+    "@polkadot/api": "^0.95.2",
+    "@polkadot/util": "^1.6.1",
+    "@polkadot/util-crypto": "^1.6.1",
     "axios": "^0.19.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "1.7.0",
