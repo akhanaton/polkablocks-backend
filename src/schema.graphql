@@ -12,6 +12,7 @@ type Query {
   bonded(controllerId: String!): String
   ledger(accountId: String!): Ledger
   freeBalance(accountId: String!): String
+  nick(accountId: String!): String
 }
 
 type Subscription {

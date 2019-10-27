@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { setSS58Format, encodeAddress } from '@polkadot/util-crypto';
+import { hexToString } from '@polkadot/util';
 
 setSS58Format(2);
 /* eslint-disable no-plusplus */
@@ -56,6 +57,20 @@ const Query = {
       total,
       active,
     };
+  },
+
+  async nick(parents, args, { api }, info) {
+    let nick;
+    try {
+      const nickOption = await api.query.nicks.nameOf(args.accountId);
+      const [head, ...tail] = nickOption.value;
+      if (head) {
+        nick = hexToString(head.toString());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return nick;
   },
 
   async freeBalance(parent, args, { api }, info) {
