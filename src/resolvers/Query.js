@@ -212,8 +212,8 @@ const Query = {
   },
   async bonded(parents, args, { api }, info) {
     const result = await api.query.staking.bonded(args.controllerId);
-
-    return null;
+    const accountId = result.unwrapOr();
+    return accountId.toString();
   },
   async currentIndex(parents, args, { api }, info) {
     const result = await api.query.session.currentIndex();
