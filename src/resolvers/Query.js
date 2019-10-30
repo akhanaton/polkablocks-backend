@@ -22,12 +22,12 @@ const Query = {
   },
   async sessionValidators(parent, args, { api }, info) {
     const validatorArray = await api.query.session.validators();
-    const validators = validatorArray.map(async controllerId => {
-      const result = await api.query.staking.bonded(controllerId);
-      const accountId = result.unwrapOr();
+    const validators = validatorArray.map(async validatorId => {
+      const result = await api.query.staking.bonded(validatorId);
+      const controllerId = result.unwrapOr();
       return {
-        controllerId: encodeAddress(controllerId),
-        accountId,
+        accountId: encodeAddress(validatorId),
+        controllerId,
       };
     });
     return validators;
